@@ -4,9 +4,89 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <!-- Compressed CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.5/dist/css/foundation.min.css" crossorigin="anonymous">
+
+    <!-- adding font awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+    />
+    <link
+    rel="stylesheet"
+    href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css"
+  />
+  <link rel="stylesheet" href="./assets/css/style.css" />
+    <title>Space Trek</title>
 </head>
 <body>
-    Exploring Mars
+    <header>
+        <div id="header-title" class="row">
+            <div class="columns header">
+                <div>
+                <H1>SPACE TREK</H1>
+            </div>
+            </div>
+            <div class="columns">
+
+            </div>
+        </div>
+    </header>
+    <main class="body">
+        <!-- This demo uses flex grid but you can use float grid too -->
+        <div class="grid-x ">
+            <div class="large-6 cell custom-cell"><button class="button custom-button">Mission Control</button></div>
+            <div class="large-6 cell custom-cell"><button class="button custom-button">Captain's Log</button></div>
+          </div>
+
+  <div class="row grid-x  align-center">
+    <div class="columns cell large-10">
+      <div class="orbit" role="region" aria-label="Favorite Space Pictures" data-orbit data-options="animInFromLeft:fade-in; animInFromRight:fade-in; animOutToLeft:fade-out; animOutToRight:fade-out;" data-use-m-u-i="false">
+        <ul class="orbit-container">
+          <button class="orbit-previous"><span class="show-for-sr">Previous Slide</span>&#9664;&#xFE0E;</button>
+          <button class="orbit-next"><span class="show-for-sr">Next Slide</span>&#9654;&#xFE0E;</button>
+          <li class="is-active orbit-slide">
+            <img class="orbit-image" src="https://apod.nasa.gov/apod/image/2301/ngc6355_hubble_1080.jpg" alt="Space">
+            <figcaption class="orbit-caption custom-orbit-caption">Space, the final frontier.... <br>These are the images taken by Hubble and Curiosity Rover. Their continuing mission: to capture strange new worlds...<br>
+            To boldy go where only machine has dared to go... </figcaption>
+          </li>
+         </ul>
+        <nav class="orbit-bullets">
+          <button class="is-active" data-slide="0"><span class="show-for-sr">First slide details.</span><span class="show-for-sr">Current Slide</span></button>
+        </nav>
+      </div>
+    </div>
+  </div>
+  
+    </main>
+    <footer>
+        <div id="footer-legal" class="grid-x">
+            <div class="cell callout footer">
+                <p>&copy;Stefan Marinov, Fabian Mukungu, Devarsh Patel. All rights reserved. Images taken from NASA via their public API's.</p>
+
+            </div>
+        </div>
+    </footer>
+
+    <!-- Compressed JavaScript -->
+
+
+<script
+src="https://code.jquery.com/jquery-3.6.3.min.js"
+integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+crossorigin="anonymous"
+></script>
+<!-- including jquery UI-->
+<script
+src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"
+integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0="
+crossorigin="anonymous"
+></script>
+<script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.5/dist/js/foundation.min.js" 
+crossorigin="anonymous"></script>
+<!-- including Day JS-->
+<script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+<script type="module" src="./assets/javascript/script.js"></script>
+<script>$(document).foundation();</script>
 </body>
 </html>
