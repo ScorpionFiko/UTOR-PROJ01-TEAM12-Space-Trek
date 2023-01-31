@@ -1,6 +1,6 @@
 .footer, .header {
     background-color: black!important;
-    color: white!important;
+    color: #ffd46d!important;
     margin: 0;
     padding: 1.5rem;  
     display: flex;
@@ -10,7 +10,11 @@
 .body {
     background-color: #353333!important;
     padding: 2rem;
+    color:#ffd46d!important;
+}
 
+.text {
+    color:#ffd46d!important;
 }
 
 .custom-cell{
@@ -20,13 +24,14 @@
 }
 
 .custom-button {
-    background-color: #ffd46d;
-    color: #353333;
+    background-color: #ffd46d!important;
+    color: #353333!important;
+    font-size: 1.25em;
 }
 
 .custom-button:hover {
-    background-color: #e8960d;
-    color: #353333;
+    background-color: #e8960d!important;
+    color: #353333!important;
 }
 
 .custom-orbit-caption {

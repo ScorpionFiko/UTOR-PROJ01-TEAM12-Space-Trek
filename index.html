@@ -35,8 +35,73 @@
     <main class="body">
         <!-- This demo uses flex grid but you can use float grid too -->
         <div class="grid-x ">
-            <div class="large-6 cell custom-cell"><button class="button custom-button">Mission Control</button></div>
+            <div class="large-6 cell custom-cell"><button class="button custom-button" data-open="missionControlModal">Mission Control</button></div>
             <div class="large-6 cell custom-cell"><button class="button custom-button">Captain's Log</button></div>
+          </div>
+
+          <div class="row">
+            <div class="columns">          
+              <div class="reveal body" id="missionControlModal" data-reveal>
+                <ul class="accordion " data-accordion data-allow-all-closed="true">
+                    <li class="accordion-item" data-accordion-item>
+                      <a href="#" class="accordion-title custom-button">Space Exploration Mission</a>
+                      <div class="accordion-content body" data-tab-content >
+                        <p>Select date range for the image retrieval</p>
+                        <form>
+                            <div class="grid-container">
+                              <div class="grid-x grid-padding-x">
+                                <div class="large-6 cell ">
+                                  <label class="text">Start Date
+                                    <input type="text" placeholder="start date">
+                                  </label>
+                                </div>
+                                <div class="large-6 cell">
+                                  <label class="text">End Date
+                                    <input type="text" placeholder="end date">
+                                  </label>
+                                </div>
+                                <div class="large-6 cell custom-cell"><button class="button custom-button" >Start Mission</button></div>
+                              </div>
+                            </div>
+                          </form>
+                      </div>
+                    </li>
+                    <li class="accordion-item" data-accordion-item>
+                      <a href="#" class="accordion-title custom-button">Mars Exploration Mission</a>
+                      <div class="accordion-content body" data-tab-content>
+                        <p>Select the date and Curiousity Rover's camera</p>
+                        <form>
+                            <div class="grid-container">
+                              <div class="grid-x grid-padding-x">
+                                <div class="large-12 cell ">
+                                  <label class="text">Date
+                                    <input type="text" placeholder="start date">
+                                  </label>
+                                </div>
+                                <div class="large-12 cell">
+                                  <label class="text">Camera
+                                    <select>
+                                        <option data-camera="FHAZ" value="FHAZ">Front Hazard Avoidance Camera</option>
+                                        <option  data-camera="RHAZ" value="RHAZ">Rear Hazard Avoidance Camera</option>
+                                        <option data-camera="MAST"  value="MAST">Mast Camera</option>
+                                        <option data-camera="CHEMCAM"  value="CHEMCAM">Chemistry and Camera Complex</option>
+                                        <option data-camera="MAHLI"  value="MAHLI">Mars Hand Lens Imager</option>
+                                        <option data-camera="MARDI"  value="MARDI">Mars Descent Imager</option>
+                                        <option data-camera="NAVCAM"  value="NAVCAM">Navigation Camera</option>
+                                      </select>
+                                  </label>
+                                </div>
+                                <div class="large-6 cell custom-cell"><button class="button custom-button" >Start Mission</button></div>
+                              </div>
+                            </div>
+                          </form>
+                      </div>
+                    </li>
+                  </ul>
+                  
+                
+                </div>
+            </div>
           </div>
 
   <div class="row grid-x  align-center">
