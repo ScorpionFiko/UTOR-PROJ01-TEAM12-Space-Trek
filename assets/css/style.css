@@ -1,0 +1,36 @@
+.footer, .header {
+    background-color: black!important;
+    color: white!important;
+    margin: 0;
+    padding: 1.5rem;  
+    display: flex;
+    justify-content: center;
+}
+
+.body {
+    background-color: #353333!important;
+    padding: 2rem;
+
+}
+
+.custom-cell{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.custom-button {
+    background-color: #ffd46d;
+    color: #353333;
+}
+
+.custom-button:hover {
+    background-color: #e8960d;
+    color: #353333;
+}
+
+.custom-orbit-caption {
+    top: 0;
+    position: absolute;
+    bottom: auto;
+}
