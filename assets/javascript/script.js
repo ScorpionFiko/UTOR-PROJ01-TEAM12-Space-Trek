@@ -1,7 +1,18 @@
 // sets up the max attribute of the days to current date
 $(document).ready(function () {
-    clearControlPanel();
+  clearControlPanel();
 
+  const apodImage = document.getElementById("orbit-image");
+  const ApodAPI_KEY = "q6MAM0NRPdrz7ICmAHstyfpVH1KIkOHnta2GaO4x";
+  const ApodAPI_URL = `https://api.nasa.gov/planetary/apod?api_key=${ApodAPI_KEY}`;
+
+  fetch(ApodAPI_URL)
+    .then(response => response.json())
+    .then(data => {
+      apodImage.src = data.url;
+      apodImage.alt = data.title;
+    })
+    .catch(error => console.error(error));
 });
 
 //helper variables
