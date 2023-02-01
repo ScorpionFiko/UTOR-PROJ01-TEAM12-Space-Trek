@@ -31,18 +31,16 @@ $("#spaceEndDate").on("change", function (event) {
 //  - the accordeon clicks
 //  - the buttons 
 $("#missionControlPanel").on("click", function (event) {
-
-    event.stopPropagation()
     if (event.target.matches("a")) {
         clearControlPanel();
     }
     if (event.target.matches("#spaceMissionStart")) {
         // these framework listeners are required to prevent further action on invalid input
-        startSpaceMission();
+        startSpaceMission(event);
     }
     if (event.target.matches("#roverMissionStart")) {
         // these framework listeners are required to prevent further action on invalid input
-        startRoverMission();
+        startRoverMission(event);
     }
 });
 // removes any data from the control panel as the users flips between options
@@ -77,18 +75,22 @@ $("#roverCamera").on("valid.zf.abide", function (ev, el) {
 });
 
 // starting the space mission; no action takes place while we have invalid inputs
-function startSpaceMission() {
+function startSpaceMission(event) {
     if (spaceStartDateOK && spaceEndDateOK) {
         alert("fetch and display SPACE images");
+        event.preventDefault();
+        event.stopPropagation();
     } else {
         alert("must NOT fetch and display SPACE images");
 
     }
 }
 // starting the space mission; no action takes place while we have invalid inputs
-function startRoverMission() {
+function startRoverMission(event) {
     if (roverDateOK && roverCameraOK) {
         alert("fetch and display ROVER images");
+        event.preventDefault();
+        event.stopPropagation();
     } else {
         alert("must NOT fetch and display ROVER images");
 
