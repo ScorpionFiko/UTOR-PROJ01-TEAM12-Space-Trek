@@ -23,7 +23,8 @@
     <header>
         <div id="header-title" class="row">
             <div class="columns header">
-                <div>
+                <div class="logo">
+                    <img src="./assets/images/enterprise-1701-D.png" alt="image of U.S.S. Enterprise 1701-D">
                 <H1>SPACE TREK</H1>
             </div>
             </div>
@@ -35,32 +36,38 @@
     <main class="body">
         <!-- This demo uses flex grid but you can use float grid too -->
         <div class="grid-x ">
-            <div class="large-6 cell custom-cell"><button class="button custom-button" data-open="missionControlModal">Mission Control</button></div>
+            <div class="large-6 cell custom-cell"><button class="button custom-button" data-open="missionControlPanel">Mission Control</button></div>
             <div class="large-6 cell custom-cell"><button class="button custom-button">Captain's Log</button></div>
           </div>
 
           <div class="row">
             <div class="columns">          
-              <div class="reveal body" id="missionControlModal" data-reveal>
+              <div class="reveal body" id="missionControlPanel" data-reveal>
                 <ul class="accordion " data-accordion data-allow-all-closed="true">
                     <li class="accordion-item" data-accordion-item>
                       <a href="#" class="accordion-title custom-button">Space Exploration Mission</a>
                       <div class="accordion-content body" data-tab-content >
                         <p>Select date range for the image retrieval</p>
-                        <form>
+                        <form id="spaceMissionDetails" data-abide novalidate>
                             <div class="grid-container">
                               <div class="grid-x grid-padding-x">
                                 <div class="large-6 cell ">
                                   <label class="text">Start Date
-                                    <input type="text" placeholder="start date">
+                                    <input id="spaceStartDate" type="date" placeholder="start date" required pattern="date">
+                                    <span class="form-error">
+                                        Please enter valid date!
+                                      </span>
                                   </label>
                                 </div>
                                 <div class="large-6 cell">
                                   <label class="text">End Date
-                                    <input type="text" placeholder="end date">
+                                    <input id="spaceEndDate" type="date" placeholder="end date" required pattern="date" >
+                                    <span class="form-error">
+                                        Please enter valid date!
+                                      </span>
                                   </label>
                                 </div>
-                                <div class="large-6 cell custom-cell"><button class="button custom-button" >Start Mission</button></div>
+                                <div class="large-6 cell custom-cell"><button id="spaceMissionStart" class="button custom-button" >Start Mission</button></div>
                               </div>
                             </div>
                           </form>
@@ -70,17 +77,22 @@
                       <a href="#" class="accordion-title custom-button">Mars Exploration Mission</a>
                       <div class="accordion-content body" data-tab-content>
                         <p>Select the date and Curiousity Rover's camera</p>
-                        <form>
+                        <form data-abide novalidate>
                             <div class="grid-container">
                               <div class="grid-x grid-padding-x">
                                 <div class="large-12 cell ">
                                   <label class="text">Date
-                                    <input type="text" placeholder="start date">
+                                    <input id="roverDate" type="date" placeholder="earth date" 
+                                    required pattern="date">
+                                    <span class="form-error">
+                                        Please enter valid date!
+                                      </span>
                                   </label>
                                 </div>
                                 <div class="large-12 cell">
                                   <label class="text">Camera
-                                    <select>
+                                    <select id="roverCamera" required>
+                                        <option data-camera="" value="">Select Rover camera</option>
                                         <option data-camera="FHAZ" value="FHAZ">Front Hazard Avoidance Camera</option>
                                         <option  data-camera="RHAZ" value="RHAZ">Rear Hazard Avoidance Camera</option>
                                         <option data-camera="MAST"  value="MAST">Mast Camera</option>
@@ -89,14 +101,22 @@
                                         <option data-camera="MARDI"  value="MARDI">Mars Descent Imager</option>
                                         <option data-camera="NAVCAM"  value="NAVCAM">Navigation Camera</option>
                                       </select>
+                                      <span class="form-error">
+                                        Please select a camera!
+                                      </span>
                                   </label>
                                 </div>
-                                <div class="large-6 cell custom-cell"><button class="button custom-button" >Start Mission</button></div>
+                                <div class="large-6 cell custom-cell"><button id="roverMissionStart" class="button custom-button" >Start Mission</button></div>
                               </div>
                             </div>
                           </form>
                       </div>
                     </li>
+                    <li class="accordion-item" data-accordion-item>
+                        <a href="#" class="accordion-title custom-button" data-close aria-label="Close modal">Return to Academy</a>
+                        <div data-tab-content></div>
+                      </li>
+   
                   </ul>
                   
                 

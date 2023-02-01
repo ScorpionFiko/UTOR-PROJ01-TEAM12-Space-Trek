@@ -4,7 +4,10 @@
     margin: 0;
     padding: 1.5rem;  
     display: flex;
-    justify-content: center;
+    height: 5rem;
+}
+.header {
+    font-size: 4em;
 }
 
 .body {
@@ -38,4 +41,13 @@
     top: 0;
     position: absolute;
     bottom: auto;
+}
+
+header img {
+    height: 4rem;
+}
+
+.logo {
+    display:inline-flex;
+    align-items: center;
 }
