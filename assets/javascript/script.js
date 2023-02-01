@@ -77,6 +77,7 @@ function clearControlPanel() {
     $("#spaceEndDate").attr("max", dayjs().format("YYYY-MM-DD"));
     $("#spaceEndDate").removeAttr("min");
     $("#roverDate").val("");
+    $("#roverDate").attr("max", dayjs().format("YYYY-MM-DD"));
     $("#roverCamera").val("");
     spaceStartDateOK = false;
     spaceEndDateOK = false;
@@ -126,11 +127,12 @@ function startRoverMission(event) {
 function displayMissionImages(imageData) {
     let missionDate = dayjs().unix();
     if (imageData.length === 0) {
-        $("#orbit-figcaption").empty();
-        $("#orbit-figcaption").append($('<p>', {
-            html: "Mission date: " + missionDate + "<br >No Images recorded"
-        }));
-
+        displayMissionImages([{
+            date: dayjs($("#spaceEndDate").val()).format("YYYY-MM-DD"),
+            url: "https://apod.nasa.gov/apod/image/2301/ngc6355_hubble_1080.jpg",
+            title: "Mission date: " + missionDate + "<br >No Images recorded",
+            blurred: true
+        }]);
     } else {
         $("#missionImages").empty();
         $("#missionImages").append($("<button>", {
@@ -151,13 +153,13 @@ function displayMissionImages(imageData) {
             
             $("#imageItem-" + index).append($('<img>', {
                 id: "orbit-image-" + index,
-                class: "orbit-image",
+                class: "orbit-image " + ((image.blurred) ? "blurred_image": ""),
                 src: image.url,
                 alt: "image of " + image.title
             }));
             $("#imageItem-" + index).append($('<figcaption>', {
                 id: "orbit-figcaption-" + index,
-                class: "orbit-caption",
+                class: "orbit-caption " + ((image.blurred) ? "custom-orbit-caption": ""),
                 html: image.title,
             }));
             $("#missionImagesNav").append($("<button>", {
