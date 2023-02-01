@@ -51,3 +51,8 @@ header img {
     display:inline-flex;
     align-items: center;
 }
+
+.blurred_image {
+    filter: blur(28px);
+    -webkit-filter: blur(28px);
+}

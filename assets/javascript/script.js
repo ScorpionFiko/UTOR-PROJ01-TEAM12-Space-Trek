@@ -2,7 +2,7 @@
 $(document).ready(function () {
     clearControlPanel();
     loadDailyImage();
-
+    getMissionsData();
 });
 
 function loadDailyImage() {
@@ -24,7 +24,16 @@ let spaceStartDateOK = false;
 let spaceEndDateOK = false;
 let roverDateOK = false;
 let roverCameraOK = false;
+let missionDataLocalStorage = "missionData"
+let missionsData = [];
 
+
+function getMissionsData() {
+    missionsData=[];
+    if (localStorage.getItem(missionDataLocalStorage) !== null) {
+        missionsData=JSON.parse(localStorage.getItem(missionDataLocalStorage));
+    }
+}
 //click listeners to ensure that we have valid date range
 // upon change:
 //  - sets the min attribute of end date to the startDate
@@ -92,22 +101,66 @@ $("#roverCamera").on("valid.zf.abide", function (ev, el) {
 // starting the space mission; no action takes place while we have invalid inputs
 function startSpaceMission(event) {
     if (spaceStartDateOK && spaceEndDateOK) {
-        alert("fetch and display SPACE images");
         event.preventDefault();
-        event.stopPropagation();
+        displayMissionImages([]);
     } else {
-        alert("must NOT fetch and display SPACE images");
-
+        event.stopPropagation();
     }
 }
 // starting the space mission; no action takes place while we have invalid inputs
 function startRoverMission(event) {
     if (roverDateOK && roverCameraOK) {
-        alert("fetch and display ROVER images");
         event.preventDefault();
-        event.stopPropagation();
+        displayMissionImages([]);
     } else {
-        alert("must NOT fetch and display ROVER images");
+        event.stopPropagation();
+    }
+}
+
+// function to display the images obtained from the API's
+function displayMissionImages(imageData) {
+    let missionDate = dayjs().unix();
+    if (imageData.length === 0) {
+        $("#orbit-figcaption").empty();
+        $("#orbit-figcaption").append($('<p>', {
+            html: "Mission date: " + missionDate + "<br >No Images recorded"
+        }));
+
+    } else {
+        $("#missionImages").empty();
+        $("#missionImages").append($("<button>", {
+            class: "orbit-previous",
+            html: '<span class="show-for-sr">Previous Slide</span>&#9664;&#xFE0E;'
+        }));
+        $("#missionImages").append($("<button>", {
+            class: "orbit-next",
+            html: '<span class="show-for-sr">Next Slide</span>&#9654;&#xFE0E;'
+        }));
+        imageData.forEach((image, index) => {
+            $("#missionImages").append($("<li>", {
+                class: "orbit-slide",
+                id: "imageItem-" + index
+            }));
+            $("#imageItem-" + index).attr("data-slide", index+2);
+            
+            $("#imageItem-" + index).append($('<img>', {
+                id: "orbit-image-" + index,
+                class: "orbit-image",
+                src: image.img_src,
+                alt: "image of " + image.message
+            }));
+            $("#imageItem-" + index).append($('<figcaption>', {
+                id: "orbit-figcaption-" + index,
+                class: "orbit-caption",
+                html: image.message,
+            }));
+        });
 
     }
+    Foundation.reInit($('.orbit'));
+    missionsData.push({
+        missionDate: missionDate,
+        missionData: imageData
+    });
+    localStorage.setItem(missionDataLocalStorage, JSON.stringify(missionsData));
 }
