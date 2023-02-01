@@ -111,3 +111,45 @@ function startRoverMission(event) {
 
     }
 }
+
+// Space Exploration
+
+function getNasaApodImagesInRange(startDate, endDate) {
+  const ApodAPI_KEY = "q6MAM0NRPdrz7ICmAHstyfpVH1KIkOHnta2GaO4x";
+  const ApodAPIUrl = `https://api.nasa.gov/planetary/apod?api_key=${ApodAPI_KEY}`;
+  const dateRange = [];
+  let currentDate = new Date(startDate);
+  endDate = new Date(endDate);
+
+  while (currentDate <= endDate) {
+    dateRange.push(currentDate.toISOString().slice(0, 10));
+    currentDate.setDate(currentDate.getDate() + 1);
+  }
+
+  return Promise.all(
+    dateRange.map(date => {
+      return fetch(`${ApodAPIUrl}&date=${date}`)
+        .then(response => response.json())
+        .then(data => {
+          return {
+            date: date,
+            url: data.url,
+            title: data.title
+          };
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    })
+  );
+}
+
+document.getElementById("spaceMissionStart").addEventListener("click", function(e) {
+  e.preventDefault();
+  const startDate = document.getElementById("spaceStartDate").value;
+  const endDate = document.getElementById("spaceEndDate").value;
+
+  getNasaApodImagesInRange(startDate, endDate).then(images => {
+    console.log(images);
+  });
+});
