@@ -56,3 +56,7 @@ header img {
     filter: blur(28px);
     -webkit-filter: blur(28px);
 }
+
+li img {
+    max-height: 100vh;
+}

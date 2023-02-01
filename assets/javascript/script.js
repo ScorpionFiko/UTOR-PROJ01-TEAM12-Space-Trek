@@ -98,11 +98,16 @@ $("#roverCamera").on("valid.zf.abide", function (ev, el) {
     roverCameraOK = true;
 });
 
+// import testing data
+import { provideTestData } from "./testdata.js";
+
 // starting the space mission; no action takes place while we have invalid inputs
 function startSpaceMission(event) {
     if (spaceStartDateOK && spaceEndDateOK) {
         event.preventDefault();
-        displayMissionImages([]);
+        getNasaApodImagesInRange(dayjs($("#spaceStartDate").val()).format("YYYY-MM-DD"), dayjs($("#spaceEndDate").val()).format("YYYY-MM-DD")).then(images => {
+            displayMissionImages(images);
+          });
     } else {
         event.stopPropagation();
     }
@@ -136,6 +141,7 @@ function displayMissionImages(imageData) {
             class: "orbit-next",
             html: '<span class="show-for-sr">Next Slide</span>&#9654;&#xFE0E;'
         }));
+        $("#missionImagesNav").empty();
         imageData.forEach((image, index) => {
             $("#missionImages").append($("<li>", {
                 class: "orbit-slide",
@@ -146,14 +152,21 @@ function displayMissionImages(imageData) {
             $("#imageItem-" + index).append($('<img>', {
                 id: "orbit-image-" + index,
                 class: "orbit-image",
-                src: image.img_src,
-                alt: "image of " + image.message
+                src: image.url,
+                alt: "image of " + image.title
             }));
             $("#imageItem-" + index).append($('<figcaption>', {
                 id: "orbit-figcaption-" + index,
                 class: "orbit-caption",
-                html: image.message,
+                html: image.title,
             }));
+            $("#missionImagesNav").append($("<button>", {
+                class: ((index === 0) ? "is-active":""),
+                html: '<span class="show-for-sr">Slide ' + index + 1 + '.</span>' + 
+                      ((index === 0) ? '<span class="show-for-sr">Current Slide</span>':""),
+                id: "imageNav-" + index
+            }));
+            $("#imageNav-" + index).attr("data-slide", index);
         });
 
     }
@@ -163,4 +176,37 @@ function displayMissionImages(imageData) {
         missionData: imageData
     });
     localStorage.setItem(missionDataLocalStorage, JSON.stringify(missionsData));
+}
+
+
+// Space Exploration
+
+function getNasaApodImagesInRange(startDate, endDate) {
+  const ApodAPI_KEY = "q6MAM0NRPdrz7ICmAHstyfpVH1KIkOHnta2GaO4x";
+  const ApodAPIUrl = `https://api.nasa.gov/planetary/apod?api_key=${ApodAPI_KEY}`;
+  const dateRange = [];
+  let currentDate = new Date(startDate);
+  endDate = new Date(endDate);
+
+  while (currentDate <= endDate) {
+    dateRange.push(currentDate.toISOString().slice(0, 10));
+    currentDate.setDate(currentDate.getDate() + 1);
+  }
+
+  return Promise.all(
+    dateRange.map(date => {
+      return fetch(`${ApodAPIUrl}&date=${date}`)
+        .then(response => response.json())
+        .then(data => {
+          return {
+            date: date,
+            url: data.url,
+            title: data.title
+          };
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    })
+  );
 }
