@@ -1,8 +1,8 @@
 // sets up the max attribute of the days to current date
 $(document).ready(function () {
+    $(document).foundation();
     clearControlPanel();
-    //   loadDailyImage();
-    //   getMissionsData();
+    loadDailyImage();
 });
 
 function loadDailyImage() {
@@ -157,7 +157,8 @@ function loadMissionsData() {
             $("#accordionDivImage-" + index).append($('<img>', {
                 id: "accordionDivImageMission-" + imIndex,
                 src: image.url,
-                alt: image.title
+                alt: image.title,
+                class: ((image.blurred) ? "blurred_image" : "")
             }));
         });
 
@@ -165,9 +166,6 @@ function loadMissionsData() {
     $(document).foundation();
     $("#captainsLogData").DataTable({ searching: false, info: false });
 }
-
-// import testing data
-import { provideTestData } from "./testdata.js";
 
 // starting the space mission; no action takes place while we have invalid inputs
 function startSpaceMission(event) {
@@ -205,19 +203,7 @@ function saveImages(missionDate, missionType, imageData) {
 function startRoverMission(event) {
     if (roverDateOK && roverCameraOK) {
         event.preventDefault();
-        getNasaRoverImages(dayjs($("#roverDate").val()).format("YYYY-MM-DD"), $("#roverCamera").val()).then(images => {
-            let missionDate = dayjs().unix();
-            if (images.length === 0) {
-                images = [{
-                    date: dayjs($("#spaceEndDate").val()).format("YYYY-MM-DD"),
-                    url: "https://apod.nasa.gov/apod/image/2301/ngc6355_hubble_1080.jpg",
-                    title: "Mission date: " + missionDate + "<br >No Images recorded",
-                    blurred: true
-                }];
-            }
-            displayImagesInOrbit($("#missionImagesContainer"), images);
-            saveImages(missionDate, "Mars", images);
-        });
+        getNasaRoverImages(dayjs($("#roverDate").val()).format("YYYY-MM-DD"), $("#roverCamera").val());
     } else {
         event.stopPropagation();
     }
@@ -304,7 +290,7 @@ function getNasaApodImagesInRange(startDate, endDate) {
 
 function getNasaRoverImages(roverDate, roverCamera) {
     const marsUrl = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=${roverDate}&camera=${roverCamera}&api_key=${ApodAPI_KEY}&page=1`;
-    const imageArray = [];
+    let imageArray = [];
 
     fetch(marsUrl)
         .then(response => response.json())
@@ -313,16 +299,27 @@ function getNasaRoverImages(roverDate, roverCamera) {
 
             images.forEach(image => {
                 const imageData = {
-                    title: "Camera: " + image.camera.full_name + " Date: " + image.earth_date,
+                    title: "Camera: " + image.camera.full_name + "<br>Date: " + image.earth_date,
                     date: image.earth_date,
                     url: image.img_src
                 };
                 imageArray.push(imageData);
             });
+            let missionDate = dayjs().unix();
+            if (imageArray.length === 0) {
+                imageArray = [{
+                    date: dayjs($("#spaceEndDate").val()).format("YYYY-MM-DD"),
+                    url: "https://apod.nasa.gov/apod/image/2301/ngc6355_hubble_1080.jpg",
+                    title: "Mission date: " + missionDate + "<br >No Images recorded",
+                    blurred: true
+                }];
+            }
             displayImagesInOrbit($("#missionImagesContainer"), imageArray);
-
+            saveImages(missionDate, "Mars", imageArray);
+    
         })
-        .catch(error => console.error(error))
+
+        .catch(error => console.error(error));
 
 };
 
