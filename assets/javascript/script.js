@@ -1,5 +1,6 @@
 // sets up the max attribute of the days to current date
 $(document).ready(function () {
+    $(document).foundation();
     clearControlPanel();
     loadDailyImage();
 });
