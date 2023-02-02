@@ -175,6 +175,7 @@ function displayMissionImages(imageData) {
     Foundation.reInit($('.orbit'));
     missionsData.push({
         missionDate: missionDate,
+        missionType: "space",
         missionData: imageData
     });
     localStorage.setItem(missionDataLocalStorage, JSON.stringify(missionsData));
