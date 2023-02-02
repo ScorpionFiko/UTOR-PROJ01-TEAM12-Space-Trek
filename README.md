@@ -7,11 +7,11 @@ The web page provides an interactive experience for users interested in space an
 
 Below is the image of the application when the user lands on the page.
 
-[homepage](./assets/images/Homepage.png)
+[Homepage](./assets/images/Homepage.png)
 
 Below is the image of the application when the user clicks into Mission Control.
 
-[missioncontrol](./assets/images/Misision%20Control.png)
+[Mission Control](./assets/images/Misision%20Control.png)
 
 
 ## Table of Contents
@@ -23,7 +23,7 @@ Below is the image of the application when the user clicks into Mission Control.
 
 ## Installation
 
-No installation requirements. [Click Here](https://scorpionfiko.github.io/UTOR-PROJ01-TEAM12-Exploring-Mars/) to open the webpage in your default browser.
+No installation requirements. [Click here](https://scorpionfiko.github.io/UTOR-PROJ01-TEAM12-Exploring-Mars/) to open the webpage in your default browser.
 
 
 ## Functionality
@@ -32,7 +32,7 @@ No installation requirements. [Click Here](https://scorpionfiko.github.io/UTOR-P
 
 ## Usage
 
-- Go to the application at [Click Here](https://scorpionfiko.github.io/UTOR-PROJ01-TEAM12-Exploring-Mars/)
+- [Click here](https://scorpionfiko.github.io/UTOR-PROJ01-TEAM12-Exploring-Mars/)to visit the application. 
 - Click on the mission control button.
 - Select from Space Exploration Mission or Mars Exploration Mission.
 - Select the date range.
