@@ -57,10 +57,9 @@ Use the device toolbar on the right to grow or shrink the viewable area and see 
 - HTML
 - CSS
 - JAVASCRIPT
-- BOOTSTRAP
 - JQUERY
-- FOUNDATION CSS
-- DataTables
+- FOUNDATION CSS [Foundation URL](https://get.foundation/index.html)
+- DataTables [DataTables URL](https://datatables.net/)
 
 
 ## Credits
