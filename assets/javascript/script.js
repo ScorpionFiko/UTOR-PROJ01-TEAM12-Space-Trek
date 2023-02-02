@@ -99,7 +99,7 @@ $("#roverCamera").on("valid.zf.abide", function (ev, el) {
     roverCameraOK = true;
 });
 // event listener on captain's log button to load the stored data
-$("#captainsLogBtn").on("click", function(event) {
+$("#captainsLogBtn").on("click", function (event) {
     getMissionsData();
     loadMissionsData();
 });
@@ -121,49 +121,49 @@ function loadMissionsData() {
         // adding data column
         $("#tableRow-" + index).append($('<td>', {
             id: "tableData-" + index
-        })); 
+        }));
         // adding accordeon
         $("#tableData-" + index).append($('<ul>', {
             id: "accordionUL-" + index,
-            class:"accordion ",
+            class: "accordion ",
         }));
-        $("#accordionUL-" + index).attr("data-accordion","");
-        $("#accordionUL-" + index).attr("data-allow-all-closed","true");
-        $("#accordionUL-" + index).append($('<li>',{
+        $("#accordionUL-" + index).attr("data-accordion", "");
+        $("#accordionUL-" + index).attr("data-allow-all-closed", "true");
+        $("#accordionUL-" + index).append($('<li>', {
             id: "accordionLI-" + index,
-            class:"accordion-item"
+            class: "accordion-item"
         }));
-        $("#accordionLI-" + index).attr("data-accordion-item","");
+        $("#accordionLI-" + index).attr("data-accordion-item", "");
         $("#accordionLI-" + index).append($('<a>', {
             id: "accordionLIHref-" + index,
             class: "accordion-title custom-button",
             href: "#",
-            html: "Mission Date: " + mission.missionDate + ((mission.type === "space") ? " - Space" : " - Mars") 
+            html: "Mission Date: " + mission.missionDate + ((mission.type === "space") ? " - Space" : " - Mars")
         }));
         $("#accordionLI-" + index).append($('<div>', {
             id: "accordionLIDiv-" + index,
             class: "accordion-content body"
         }));
-        $("#accordionLIDiv-" + index).attr("data-tab-content","");
+        $("#accordionLIDiv-" + index).attr("data-tab-content", "");
         $("#accordionLIDiv-" + index).append($('<div>', {
             id: "accordionDivImage-" + index,
             role: "region",
         }));
         mission.missionData.forEach((image, imIndex) => {
-            $("#accordionDivImage-" + index).append($('<p>',{
+            $("#accordionDivImage-" + index).append($('<p>', {
                 html: image.title
             }));
-            
-            $("#accordionDivImage-" + index).append($('<img>',{
+
+            $("#accordionDivImage-" + index).append($('<img>', {
                 id: "accordionDivImageMission-" + imIndex,
                 src: image.url,
                 alt: image.title
             }));
-        });        
+        });
 
     });
     $(document).foundation();
-    $("#captainsLogData").DataTable({searching:false, info:false});
+    $("#captainsLogData").DataTable({ searching: false, info: false });
 }
 
 // import testing data
@@ -184,18 +184,18 @@ function startSpaceMission(event) {
                 }];
             }
             displayImagesInOrbit($("#missionImagesContainer"), images);
-            saveImages(missionDate, images);
+            saveImages(missionDate, "space", images);
         });
     } else {
         event.stopPropagation();
     }
 }
 // function to save images to local storage
-function saveImages(missionDate, imageData) {
+function saveImages(missionDate, missionType, imageData) {
     getMissionsData();
     missionsData.push({
         missionDate: missionDate,
-        missionType: "space",
+        missionType: missionType,
         missionData: imageData
     });
     localStorage.setItem(missionDataLocalStorage, JSON.stringify(missionsData));
@@ -205,10 +205,23 @@ function saveImages(missionDate, imageData) {
 function startRoverMission(event) {
     if (roverDateOK && roverCameraOK) {
         event.preventDefault();
-        displayImagesInOrbit([]);
+        getNasaRoverImages(dayjs($("#roverDate").val()).format("YYYY-MM-DD"), $("#roverCamera").val()).then(images => {
+            let missionDate = dayjs().unix();
+            if (images.length === 0) {
+                images = [{
+                    date: dayjs($("#spaceEndDate").val()).format("YYYY-MM-DD"),
+                    url: "https://apod.nasa.gov/apod/image/2301/ngc6355_hubble_1080.jpg",
+                    title: "Mission date: " + missionDate + "<br >No Images recorded",
+                    blurred: true
+                }];
+            }
+            displayImagesInOrbit($("#missionImagesContainer"), images);
+            saveImages(missionDate, "Mars", images);
+        });
     } else {
         event.stopPropagation();
     }
+
 }
 
 // function to display the images obtained from the API's
@@ -289,31 +302,27 @@ function getNasaApodImagesInRange(startDate, endDate) {
 
 // code that gives image from mars rover API
 
-document.querySelector("#roverMissionStart").addEventListener("click", function() {
-    const marsDate = document.querySelector("#roverDate").value;
-    const marsCamera = document.querySelector("#roverCamera").value;
-    const marsApiKey = "OEdcnYDoxZyp8JlBVdLDc3ek7SHhW1cpsApg9LeI";
-    const marsUrl = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=${marsDate}&camera=${marsCamera}&api_key=${ApodAPI_KEY}&page=1`;
-  
+function getNasaRoverImages(roverDate, roverCamera) {
+    const marsUrl = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=${roverDate}&camera=${roverCamera}&api_key=${ApodAPI_KEY}&page=1`;
+    const imageArray = [];
+
     fetch(marsUrl)
-      .then(response => response.json())
-      .then(data => {
-        const images = data.photos;
-        const imageArray = [];
-        images.forEach(image => {
-          const imageData = {
-            title:"Camera: " +image.camera.full_name+ " Date: " +image.earth_date,
-            date: image.earth_date,
-            url: image.img_src
-          };
-          imageArray.push(imageData);
-        });
-        //return imageArray;
-        console.log(marsUrl);
+        .then(response => response.json())
+        .then(data => {
+            const images = data.photos;
 
-        console.log(imageArray);
-        
-    })
-    .catch(error => console.error(error));
+            images.forEach(image => {
+                const imageData = {
+                    title: "Camera: " + image.camera.full_name + " Date: " + image.earth_date,
+                    date: image.earth_date,
+                    url: image.img_src
+                };
+                imageArray.push(imageData);
+            });
+            displayImagesInOrbit($("#missionImagesContainer"), imageArray);
 
-  });
+        })
+        .catch(error => console.error(error))
+
+};
+
