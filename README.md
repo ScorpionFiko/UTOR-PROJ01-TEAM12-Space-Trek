@@ -23,7 +23,7 @@ Below is the image of the application when the user clicks into Mission Control.
 
 ## Installation
 
-No installation requirements. Click the URL https://scorpionfiko.github.io/UTOR-PROJ01-TEAM12-Exploring-Mars/ to open the webpage in your default browser.
+No installation requirements. [Click Here](https://scorpionfiko.github.io/UTOR-PROJ01-TEAM12-Exploring-Mars/) to open the webpage in your default browser.
 
 
 ## Functionality
@@ -32,8 +32,8 @@ No installation requirements. Click the URL https://scorpionfiko.github.io/UTOR-
 
 ## Usage
 
-- go to the application at https://scorpionfiko.github.io/UTOR-PROJ01-TEAM12-Exploring-Mars/
-- click on the mission control button.
+- Go to the application at [Click Here](https://scorpionfiko.github.io/UTOR-PROJ01-TEAM12-Exploring-Mars/)
+- Click on the mission control button.
 - Select from Space Exploration Mission or Mars Exploration Mission.
 - Select the date range.
 - You will be shown the images according to the date range and selected mission.
@@ -58,8 +58,8 @@ Use the device toolbar on the right to grow or shrink the viewable area and see 
 - CSS
 - JAVASCRIPT
 - JQUERY
-- FOUNDATION CSS [Foundation URL](https://get.foundation/index.html)
-- DataTables [DataTables URL](https://datatables.net/)
+- [Foundation CSS](https://get.foundation/index.html)
+- [DataTables](https://datatables.net/)
 
 
 ## Credits
