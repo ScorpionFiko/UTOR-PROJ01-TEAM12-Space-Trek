@@ -286,3 +286,34 @@ function getNasaApodImagesInRange(startDate, endDate) {
         })
     );
 }
+
+// code that gives image from mars rover API
+
+document.querySelector("#roverMissionStart").addEventListener("click", function() {
+    const marsDate = document.querySelector("#roverDate").value;
+    const marsCamera = document.querySelector("#roverCamera").value;
+    const marsApiKey = "OEdcnYDoxZyp8JlBVdLDc3ek7SHhW1cpsApg9LeI";
+    const marsUrl = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=${marsDate}&camera=${marsCamera}&api_key=${ApodAPI_KEY}&page=1`;
+  
+    fetch(marsUrl)
+      .then(response => response.json())
+      .then(data => {
+        const images = data.photos;
+        const imageArray = [];
+        images.forEach(image => {
+          const imageData = {
+            title:"Camera: " +image.camera.full_name+ " Date: " +image.earth_date,
+            date: image.earth_date,
+            url: image.img_src
+          };
+          imageArray.push(imageData);
+        });
+        //return imageArray;
+        console.log(marsUrl);
+
+        console.log(imageArray);
+        
+    })
+    .catch(error => console.error(error));
+
+  });
