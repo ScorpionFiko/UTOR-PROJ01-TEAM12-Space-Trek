@@ -60,3 +60,19 @@ header img {
 li img {
     max-height: 100vh;
 }
+
+.current {
+    padding: 0.1875rem 0.625rem;
+    background: #ffd46d!important;
+    color: #353333!important;
+    cursor: default;
+}
+
+#example_length > label, tr, td, thead, tbody, table {
+    background-color: #353333!important;
+    color:#ffd46d!important;
+}
+
+.accordion {
+    margin:0
+}

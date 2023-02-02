@@ -1,13 +1,12 @@
 // sets up the max attribute of the days to current date
 $(document).ready(function () {
     clearControlPanel();
-    loadDailyImage();
-    getMissionsData();
+    //   loadDailyImage();
+    //   getMissionsData();
 });
 
 function loadDailyImage() {
     const apodImage = document.getElementById("orbit-image");
-    const ApodAPI_KEY = "q6MAM0NRPdrz7ICmAHstyfpVH1KIkOHnta2GaO4x";
     const ApodAPI_URL = `https://api.nasa.gov/planetary/apod?api_key=${ApodAPI_KEY}`;
 
     fetch(ApodAPI_URL)
@@ -26,12 +25,13 @@ let roverDateOK = false;
 let roverCameraOK = false;
 let missionDataLocalStorage = "missionData"
 let missionsData = [];
+const ApodAPI_KEY = "q6MAM0NRPdrz7ICmAHstyfpVH1KIkOHnta2GaO4x";
 
-
+// retrieves stored data
 function getMissionsData() {
-    missionsData=[];
+    missionsData = [];
     if (localStorage.getItem(missionDataLocalStorage) !== null) {
-        missionsData=JSON.parse(localStorage.getItem(missionDataLocalStorage));
+        missionsData = JSON.parse(localStorage.getItem(missionDataLocalStorage));
     }
 }
 //click listeners to ensure that we have valid date range
@@ -98,6 +98,73 @@ $("#roverDate").on("valid.zf.abide", function (ev, el) {
 $("#roverCamera").on("valid.zf.abide", function (ev, el) {
     roverCameraOK = true;
 });
+// event listener on captain's log button to load the stored data
+$("#captainsLogBtn").on("click", function(event) {
+    getMissionsData();
+    loadMissionsData();
+});
+
+
+// funciton to load the mission data in the captaion's log
+function loadMissionsData() {
+    if (missionsData.length === 0) {
+        return;
+    }
+    let tableBody = $("#captainsLogData").children('tbody');
+    // clearing table body
+    tableBody.empty();
+    missionsData.forEach((mission, index) => {
+        // adding row
+        tableBody.append($('<tr>', {
+            id: "tableRow-" + index
+        }));
+        // adding data column
+        $("#tableRow-" + index).append($('<td>', {
+            id: "tableData-" + index
+        })); 
+        // adding accordeon
+        $("#tableData-" + index).append($('<ul>', {
+            id: "accordionUL-" + index,
+            class:"accordion ",
+        }));
+        $("#accordionUL-" + index).attr("data-accordion","");
+        $("#accordionUL-" + index).attr("data-allow-all-closed","true");
+        $("#accordionUL-" + index).append($('<li>',{
+            id: "accordionLI-" + index,
+            class:"accordion-item"
+        }));
+        $("#accordionLI-" + index).attr("data-accordion-item","");
+        $("#accordionLI-" + index).append($('<a>', {
+            id: "accordionLIHref-" + index,
+            class: "accordion-title custom-button",
+            href: "#",
+            html: "Mission Date: " + mission.missionDate + ((mission.type === "space") ? " - Space" : " - Mars") 
+        }));
+        $("#accordionLI-" + index).append($('<div>', {
+            id: "accordionLIDiv-" + index,
+            class: "accordion-content body"
+        }));
+        $("#accordionLIDiv-" + index).attr("data-tab-content","");
+        $("#accordionLIDiv-" + index).append($('<div>', {
+            id: "accordionDivImage-" + index,
+            role: "region",
+        }));
+        mission.missionData.forEach((image, imIndex) => {
+            $("#accordionDivImage-" + index).append($('<p>',{
+                html: image.title
+            }));
+            
+            $("#accordionDivImage-" + index).append($('<img>',{
+                id: "accordionDivImageMission-" + imIndex,
+                src: image.url,
+                alt: image.title
+            }));
+        });        
+
+    });
+    $(document).foundation();
+    $("#captainsLogData").DataTable({searching:false, info:false});
+}
 
 // import testing data
 import { provideTestData } from "./testdata.js";
@@ -107,72 +174,25 @@ function startSpaceMission(event) {
     if (spaceStartDateOK && spaceEndDateOK) {
         event.preventDefault();
         getNasaApodImagesInRange(dayjs($("#spaceStartDate").val()).format("YYYY-MM-DD"), dayjs($("#spaceEndDate").val()).format("YYYY-MM-DD")).then(images => {
-            displayMissionImages(images);
-          });
-    } else {
-        event.stopPropagation();
-    }
-}
-// starting the space mission; no action takes place while we have invalid inputs
-function startRoverMission(event) {
-    if (roverDateOK && roverCameraOK) {
-        event.preventDefault();
-        displayMissionImages([]);
-    } else {
-        event.stopPropagation();
-    }
-}
-
-// function to display the images obtained from the API's
-function displayMissionImages(imageData) {
-    let missionDate = dayjs().unix();
-    if (imageData.length === 0) {
-        displayMissionImages([{
-            date: dayjs($("#spaceEndDate").val()).format("YYYY-MM-DD"),
-            url: "https://apod.nasa.gov/apod/image/2301/ngc6355_hubble_1080.jpg",
-            title: "Mission date: " + missionDate + "<br >No Images recorded",
-            blurred: true
-        }]);
-    } else {
-        $("#missionImages").empty();
-        $("#missionImages").append($("<button>", {
-            class: "orbit-previous",
-            html: '<span class="show-for-sr">Previous Slide</span>&#9664;&#xFE0E;'
-        }));
-        $("#missionImages").append($("<button>", {
-            class: "orbit-next",
-            html: '<span class="show-for-sr">Next Slide</span>&#9654;&#xFE0E;'
-        }));
-        $("#missionImagesNav").empty();
-        imageData.forEach((image, index) => {
-            $("#missionImages").append($("<li>", {
-                class: "orbit-slide",
-                id: "imageItem-" + index
-            }));
-            $("#imageItem-" + index).attr("data-slide", index+2);
-            
-            $("#imageItem-" + index).append($('<img>', {
-                id: "orbit-image-" + index,
-                class: "orbit-image " + ((image.blurred) ? "blurred_image": ""),
-                src: image.url,
-                alt: "image of " + image.title
-            }));
-            $("#imageItem-" + index).append($('<figcaption>', {
-                id: "orbit-figcaption-" + index,
-                class: "orbit-caption " + ((image.blurred) ? "custom-orbit-caption": ""),
-                html: image.title,
-            }));
-            $("#missionImagesNav").append($("<button>", {
-                class: ((index === 0) ? "is-active":""),
-                html: '<span class="show-for-sr">Slide ' + index + 1 + '.</span>' + 
-                      ((index === 0) ? '<span class="show-for-sr">Current Slide</span>':""),
-                id: "imageNav-" + index
-            }));
-            $("#imageNav-" + index).attr("data-slide", index);
+            let missionDate = dayjs().unix();
+            if (images.length === 0) {
+                images = [{
+                    date: dayjs($("#spaceEndDate").val()).format("YYYY-MM-DD"),
+                    url: "https://apod.nasa.gov/apod/image/2301/ngc6355_hubble_1080.jpg",
+                    title: "Mission date: " + missionDate + "<br >No Images recorded",
+                    blurred: true
+                }];
+            }
+            displayImagesInOrbit($("#missionImagesContainer"), images);
+            saveImages(missionDate, images);
         });
-
+    } else {
+        event.stopPropagation();
     }
-    Foundation.reInit($('.orbit'));
+}
+// function to save images to local storage
+function saveImages(missionDate, imageData) {
+    getMissionsData();
     missionsData.push({
         missionDate: missionDate,
         missionType: "space",
@@ -181,35 +201,88 @@ function displayMissionImages(imageData) {
     localStorage.setItem(missionDataLocalStorage, JSON.stringify(missionsData));
 }
 
+// starting the space mission; no action takes place while we have invalid inputs
+function startRoverMission(event) {
+    if (roverDateOK && roverCameraOK) {
+        event.preventDefault();
+        displayImagesInOrbit([]);
+    } else {
+        event.stopPropagation();
+    }
+}
+
+// function to display the images obtained from the API's
+function displayImagesInOrbit(orbitElement, imageData) {
+    let orbitElementUL = orbitElement.children("ul");
+    let orbitElementNav = orbitElement.children("nav");
+    $(orbitElementUL).empty();
+    $(orbitElementUL).append($("<button>", {
+        class: "orbit-previous",
+        html: '<span class="show-for-sr">Previous Slide</span>&#9664;&#xFE0E;'
+    }));
+    $(orbitElementUL).append($("<button>", {
+        class: "orbit-next",
+        html: '<span class="show-for-sr">Next Slide</span>&#9654;&#xFE0E;'
+    }));
+    $(orbitElementNav).empty();
+    imageData.forEach((image, index) => {
+        $(orbitElementUL).append($("<li>", {
+            class: "orbit-slide",
+            id: "imageItem-" + index
+        }));
+        $("#imageItem-" + index).attr("data-slide", index + 2);
+
+        $("#imageItem-" + index).append($('<img>', {
+            id: "orbit-image-" + index,
+            class: "orbit-image " + ((image.blurred) ? "blurred_image" : ""),
+            src: image.url,
+            alt: "image of " + image.title
+        }));
+        $("#imageItem-" + index).append($('<figcaption>', {
+            id: "orbit-figcaption-" + index,
+            class: "orbit-caption " + ((image.blurred) ? "custom-orbit-caption" : ""),
+            html: image.title,
+        }));
+        $(orbitElementNav).append($("<button>", {
+            class: ((index === 0) ? "is-active" : ""),
+            html: '<span class="show-for-sr">Slide ' + index + 1 + '.</span>' +
+                ((index === 0) ? '<span class="show-for-sr">Current Slide</span>' : ""),
+            id: "imageNav-" + index
+        }));
+        $("#imageNav-" + index).attr("data-slide", index);
+    });
+    Foundation.reInit($(orbitElement));
+
+}
+
 
 // Space Exploration
 
 function getNasaApodImagesInRange(startDate, endDate) {
-  const ApodAPI_KEY = "q6MAM0NRPdrz7ICmAHstyfpVH1KIkOHnta2GaO4x";
-  const ApodAPIUrl = `https://api.nasa.gov/planetary/apod?api_key=${ApodAPI_KEY}`;
-  const dateRange = [];
-  let currentDate = new Date(startDate);
-  endDate = new Date(endDate);
+    const ApodAPIUrl = `https://api.nasa.gov/planetary/apod?api_key=${ApodAPI_KEY}`;
+    const dateRange = [];
+    let currentDate = new Date(startDate);
+    endDate = new Date(endDate);
 
-  while (currentDate <= endDate) {
-    dateRange.push(currentDate.toISOString().slice(0, 10));
-    currentDate.setDate(currentDate.getDate() + 1);
-  }
+    while (currentDate <= endDate) {
+        dateRange.push(currentDate.toISOString().slice(0, 10));
+        currentDate.setDate(currentDate.getDate() + 1);
+    }
 
-  return Promise.all(
-    dateRange.map(date => {
-      return fetch(`${ApodAPIUrl}&date=${date}`)
-        .then(response => response.json())
-        .then(data => {
-          return {
-            date: date,
-            url: data.url,
-            title: data.title
-          };
+    return Promise.all(
+        dateRange.map(date => {
+            return fetch(`${ApodAPIUrl}&date=${date}`)
+                .then(response => response.json())
+                .then(data => {
+                    return {
+                        date: date,
+                        url: data.url,
+                        title: data.title
+                    };
+                })
+                .catch(error => {
+                    console.error(error);
+                });
         })
-        .catch(error => {
-          console.error(error);
-        });
-    })
-  );
+    );
 }
