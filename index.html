@@ -67,7 +67,7 @@
                                       </span>
                                   </label>
                                 </div>
-                                <div class="large-6 cell custom-cell"><button id="spaceMissionStart" class="button custom-button" >Start Mission</button></div>
+                                <div class="large-6 cell custom-cell"><button id="spaceMissionStart" class="button custom-button" data-close>Start Mission</button></div>
                               </div>
                             </div>
                           </form>
@@ -106,14 +106,14 @@
                                       </span>
                                   </label>
                                 </div>
-                                <div class="large-6 cell custom-cell"><button id="roverMissionStart" class="button custom-button" >Start Mission</button></div>
+                                <div class="large-6 cell custom-cell"><button id="roverMissionStart" class="button custom-button" data-close>Start Mission</button></div>
                               </div>
                             </div>
                           </form>
                       </div>
                     </li>
                     <li class="accordion-item" data-accordion-item>
-                        <a href="#" class="accordion-title custom-button" data-close aria-label="Close modal">Return to Academy</a>
+                        <a id="returnAcademy" href="#" class="accordion-title custom-button" data-close aria-label="Close modal">Return to Academy</a>
                         <div data-tab-content></div>
                       </li>
    
@@ -125,19 +125,15 @@
           </div>
 
   <div class="row grid-x  align-center">
-    <div class="columns cell large-10">
-      <div class="orbit" role="region" aria-label="Favorite Space Pictures" data-orbit data-options="animInFromLeft:fade-in; animInFromRight:fade-in; animOutToLeft:fade-out; animOutToRight:fade-out;" data-use-m-u-i="false">
+    <div class="cell large-10">
+      <div id="missionImagesContainer" class="orbit" role="region" aria-label="Favorite Space Pictures" data-orbit data-options="animInFromLeft:fade-in; animInFromRight:fade-in; animOutToLeft:fade-out; animOutToRight:fade-out;" data-use-m-u-i="false">
         <ul id="missionImages" class="orbit-container">
-          <button class="orbit-previous"><span class="show-for-sr">Previous Slide</span>&#9664;&#xFE0E;</button>
-          <button class="orbit-next"><span class="show-for-sr">Next Slide</span>&#9654;&#xFE0E;</button>
           <li class="is-active orbit-slide">
             <img id="orbit-image" class="orbit-image" src="https://apod.nasa.gov/apod/image/2301/ngc6355_hubble_1080.jpg" alt="Space">
-            <figcaption class="orbit-caption custom-orbit-caption">Space, the final frontier.... <br>These are the images taken by Hubble and Curiosity Rover. Their continuing mission: to capture strange new worlds...<br>
-            To boldy go where only machine has dared to go... </figcaption>
+            <figcaption id="orbit-figcaption" class="orbit-caption custom-orbit-caption"><p>Space, the final frontier.... <br>These are the images taken by the Hubble Telescope, the Curiosity Mars rover, and astronomy enthusiasts.<br>Their continuing mission: to capture strange new worlds; to seek out new phenomena; to boldy go where only machine has dared to go... </p></figcaption>
           </li>
          </ul>
-        <nav class="orbit-bullets">
-          <button class="is-active" data-slide="0"><span class="show-for-sr">First slide details.</span><span class="show-for-sr">Current Slide</span></button>
+        <nav id="missionImagesNav" class="orbit-bullets">
         </nav>
       </div>
     </div>
@@ -147,7 +143,7 @@
     <footer>
         <div id="footer-legal" class="grid-x">
             <div class="cell callout footer">
-                <p>&copy;Stefan Marinov, Fabian Mukungu, Devarsh Patel. All rights reserved. Images taken from NASA via their public API's.</p>
+                <p>&copy;Stefan Marinov, Fabian Mukungu, Devarsh Patel. All rights reserved. Images taken from NASA via their public API's. U.S.S. Enterprise 1701-D image created by Chris from the Noun Project.</p>
 
             </div>
         </div>
