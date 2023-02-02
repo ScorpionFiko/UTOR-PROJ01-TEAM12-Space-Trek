@@ -38,15 +38,15 @@ No installation requirements. Click the URL https://scorpionfiko.github.io/UTOR-
 
 Method 1:
 
-    - Use separate computer, tablet, or phone to access the website
+  - Use separate computer, tablet, or phone to access the website
 
 Method 2:
 
-    - Access the web page via web browser.
+  - Access the web page via web browser.
 Right click on the page and select "inspect" to open browser's developer tools
 Enable the device toolbar if not already enabled
 Use the device toolbar on the right to grow or shrink the viewable area and see how items change.
-                   
+
 
 ## Credits
 
