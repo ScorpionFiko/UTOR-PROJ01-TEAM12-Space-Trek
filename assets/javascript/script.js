@@ -298,7 +298,7 @@ function getNasaRoverImages(roverDate, roverCamera) {
 
             images.forEach(image => {
                 const imageData = {
-                    title: "Camera: " + image.camera.full_name + " Date: " + image.earth_date,
+                    title: "Camera: " + image.camera.full_name + "<br>Date: " + image.earth_date,
                     date: image.earth_date,
                     url: image.img_src
                 };
