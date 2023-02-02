@@ -36,13 +36,103 @@
     </header>
     <main class="body">
   
-        <table id="example" class="display" style="width:100%">
+        <table id="example" class="display" >
             <thead>
                 <tr>
                     <th>Name</th>
                 </tr>
             </thead>
             <tbody>
+                <tr>
+                    <td>
+                        <ul class="accordion " data-accordion data-allow-all-closed="true">
+                            <li class="accordion-item" data-accordion-item>
+                              <a href="#" class="accordion-title custom-button">001 - Space Exploration Mission</a>
+                              <div class="accordion-content body" data-tab-content >
+                                <p>Select date range for the image retrieval</p>
+                                <img src="https://apod.nasa.gov/apod/image/2301/ngc6355_hubble_1080.jpg">
+                                <p>Select date range for the image retrieval</p>
+                                <img src="https://apod.nasa.gov/apod/image/2301/ngc6355_hubble_1080.jpg">
+                                <p>Select date range for the image retrieval</p>
+                                <img src="https://apod.nasa.gov/apod/image/2301/ngc6355_hubble_1080.jpg">
+                                </div>
+                            </li>
+           
+                          </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <ul class="accordion " data-accordion data-allow-all-closed="true">
+                            <li class="accordion-item" data-accordion-item>
+                              <a href="#" class="accordion-title custom-button">002 - Space Exploration Mission</a>
+                              <div class="accordion-content body" data-tab-content >
+                                <p>Select date range for the image retrieval</p>
+                                <form id="spaceMissionDetails" data-abide novalidate>
+                                    <div class="grid-container">
+                                      <div class="grid-x grid-padding-x">
+                                        <div class="large-6 cell ">
+                                          <label class="text">Start Date
+                                            <input id="spaceStartDate" type="date" placeholder="start date" required pattern="date">
+                                            <span class="form-error">
+                                                Please enter valid date!
+                                              </span>
+                                          </label>
+                                        </div>
+                                        <div class="large-6 cell">
+                                          <label class="text">End Date
+                                            <input id="spaceEndDate" type="date" placeholder="end date" required pattern="date" >
+                                            <span class="form-error">
+                                                Please enter valid date!
+                                              </span>
+                                          </label>
+                                        </div>
+                                        <div class="large-6 cell custom-cell"><button id="spaceMissionStart" class="button custom-button" data-close>Start Mission</button></div>
+                                      </div>
+                                    </div>
+                                  </form>
+                              </div>
+                            </li>
+           
+                          </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <ul class="accordion " data-accordion data-allow-all-closed="true">
+                            <li class="accordion-item" data-accordion-item>
+                              <a href="#" class="accordion-title custom-button">Space Exploration Mission</a>
+                              <div class="accordion-content body" data-tab-content >
+                                <p>Select date range for the image retrieval</p>
+                                <form id="spaceMissionDetails" data-abide novalidate>
+                                    <div class="grid-container">
+                                      <div class="grid-x grid-padding-x">
+                                        <div class="large-6 cell ">
+                                          <label class="text">Start Date
+                                            <input id="spaceStartDate" type="date" placeholder="start date" required pattern="date">
+                                            <span class="form-error">
+                                                Please enter valid date!
+                                              </span>
+                                          </label>
+                                        </div>
+                                        <div class="large-6 cell">
+                                          <label class="text">End Date
+                                            <input id="spaceEndDate" type="date" placeholder="end date" required pattern="date" >
+                                            <span class="form-error">
+                                                Please enter valid date!
+                                              </span>
+                                          </label>
+                                        </div>
+                                        <div class="large-6 cell custom-cell"><button id="spaceMissionStart" class="button custom-button" data-close>Start Mission</button></div>
+                                      </div>
+                                    </div>
+                                  </form>
+                              </div>
+                            </li>
+           
+                          </ul>
+                    </td>
+                </tr>
                 <tr>
                     <td>
                         <ul class="accordion " data-accordion data-allow-all-closed="true">
