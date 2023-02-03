@@ -110,6 +110,8 @@ function loadMissionsData() {
     if (missionsData.length === 0) {
         return;
     }
+    $("#captainsLogData").DataTable().destroy();
+
     let tableBody = $("#captainsLogData").children('tbody');
     // clearing table body
     tableBody.empty();
@@ -138,7 +140,7 @@ function loadMissionsData() {
             id: "accordionLIHref-" + index,
             class: "accordion-title custom-button",
             href: "#",
-            html: "Mission Date: " + mission.missionDate + ((mission.type === "space") ? " - Space" : " - Mars")
+            html: "Mission Date: " + mission.missionDate + ((mission.missionType === "space") ? " - Space" : " - Mars")
         }));
         $("#accordionLI-" + index).append($('<div>', {
             id: "accordionLIDiv-" + index,
@@ -316,7 +318,7 @@ function getNasaRoverImages(roverDate, roverCamera) {
             }
             displayImagesInOrbit($("#missionImagesContainer"), imageArray);
             saveImages(missionDate, "Mars", imageArray);
-    
+
         })
 
         .catch(error => console.error(error));

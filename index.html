@@ -1,323 +1,249 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Compressed CSS -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.5/dist/css/foundation.min.css"
-      crossorigin="anonymous"
-    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.5/dist/css/foundation.min.css"
+        crossorigin="anonymous" />
 
     <!-- adding font awesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" />
 
     <!-- adding datatables -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.foundation.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.foundation.min.css" />
 
-    <link
-      rel="stylesheet"
-      href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css"
-    />
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css" />
     <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Space Trek</title>
-  </head>
-  <body>
+</head>
+
+<body>
     <header>
-      <div id="header-title" class="row">
-        <div class="columns header">
-          <div class="logo">
-            <img
-              src="./assets/images/enterprise-1701-D.png"
-              alt="image of U.S.S. Enterprise 1701-D"
-            />
-            <h1>SPACE TREK</h1>
-          </div>
+        <div id="header-title" class="row">
+            <div class="columns header">
+                <div class="logo">
+                    <img src="./assets/images/enterprise-1701-D.png" alt="image of U.S.S. Enterprise 1701-D" />
+                    <h1>SPACE TREK</h1>
+                </div>
+            </div>
+            <div class="columns"></div>
         </div>
-        <div class="columns"></div>
-      </div>
     </header>
     <main class="body">
-      <!-- This demo uses flex grid but you can use float grid too -->
-      <div class="grid-x">
-        <div class="large-6 cell custom-cell">
-          <button id="missionControlBtn" class="button custom-button" data-open="missionControlPanel">
-            Mission Control
-          </button>
+        <!-- This demo uses flex grid but you can use float grid too -->
+        <div class="grid-x">
+            <div class="large-6 medium-6 cell custom-cell">
+                <button id="missionControlBtn" class="button custom-button" data-open="missionControlPanel">
+                    Mission Control
+                </button>
+            </div>
+            <div class="large-6 medium-6 cell custom-cell">
+                <button id="captainsLogBtn" class="button custom-button" data-open="captainsLogPanel">
+                    Captain's Log
+                </button>
+            </div>
         </div>
-        <div class="large-6 cell custom-cell">
-          <button id="captainsLogBtn" class="button custom-button" data-open="captainsLogPanel">
-            Captain's Log
-          </button>
-        </div>
-      </div>
-      <!-- modal boxes for the mission control-->
-      <div class="row">
-        <div class="columns">
-          <div class="reveal body" id="missionControlPanel" data-reveal>
-            <ul class="accordion" data-accordion data-allow-all-closed="true">
-              <li class="accordion-item" data-accordion-item>
-                <a href="#" class="accordion-title custom-button"
-                  >Space Exploration Mission</a
-                >
-                <div class="accordion-content body" data-tab-content>
-                  <p>Select date range for the image retrieval</p>
-                  <form id="spaceMissionDetails" data-abide novalidate>
-                    <div class="grid-container">
-                      <div class="grid-x grid-padding-x">
-                        <div class="large-6 cell">
-                          <label class="text"
-                            >Start Date
-                            <input
-                              id="spaceStartDate"
-                              type="date"
-                              placeholder="start date"
-                              required
-                              pattern="date"
-                            />
-                            <span class="form-error">
-                              Please enter valid date!
-                            </span>
-                          </label>
-                        </div>
-                        <div class="large-6 cell">
-                          <label class="text"
-                            >End Date
-                            <input
-                              id="spaceEndDate"
-                              type="date"
-                              placeholder="end date"
-                              required
-                              pattern="date"
-                            />
-                            <span class="form-error">
-                              Please enter valid date!
-                            </span>
-                          </label>
-                        </div>
-                        <div class="large-6 cell custom-cell">
-                          <button
-                            id="spaceMissionStart"
-                            class="button custom-button"
-                            data-close
-                          >
-                            Start Mission
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </form>
+        <!-- modal boxes for the mission control-->
+        <div class="row">
+            <div class="columns">
+                <div class="reveal body" id="missionControlPanel" data-reveal>
+                    <ul class="accordion" data-accordion data-allow-all-closed="true">
+                        <li class="accordion-item" data-accordion-item>
+                            <a href="#" class="accordion-title custom-button">Space Exploration Mission</a>
+                            <div class="accordion-content body" data-tab-content>
+                                <p>Select date range for the image retrieval</p>
+                                <form id="spaceMissionDetails" data-abide novalidate>
+                                    <div class="grid-container">
+                                        <div class="grid-x grid-padding-x">
+                                            <div class="large-6 cell">
+                                                <label class="text">Start Date
+                                                    <input id="spaceStartDate" type="date" placeholder="start date"
+                                                        required pattern="date" />
+                                                    <span class="form-error">
+                                                        Please enter valid date!
+                                                    </span>
+                                                </label>
+                                            </div>
+                                            <div class="large-6 cell">
+                                                <label class="text">End Date
+                                                    <input id="spaceEndDate" type="date" placeholder="end date" required
+                                                        pattern="date" />
+                                                    <span class="form-error">
+                                                        Please enter valid date!
+                                                    </span>
+                                                </label>
+                                            </div>
+                                            <div class="large-6 cell custom-cell">
+                                                <button id="spaceMissionStart" class="button custom-button" data-close>
+                                                    Start Mission
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
+                        <li class="accordion-item" data-accordion-item>
+                            <a href="#" class="accordion-title custom-button">Mars Exploration Mission</a>
+                            <div class="accordion-content body" data-tab-content>
+                                <p>Select the date and Curiousity Rover's camera</p>
+                                <form data-abide novalidate>
+                                    <div class="grid-container">
+                                        <div class="grid-x grid-padding-x">
+                                            <div class="large-12 cell">
+                                                <label class="text">Date
+                                                    <input id="roverDate" type="date" placeholder="earth date" required
+                                                        pattern="date" />
+                                                    <span class="form-error">
+                                                        Please enter valid date!
+                                                    </span>
+                                                </label>
+                                            </div>
+                                            <div class="large-12 cell">
+                                                <label class="text">Camera
+                                                    <select id="roverCamera" required>
+                                                        <option data-camera="" value="">
+                                                            Select Rover camera
+                                                        </option>
+                                                        <option data-camera="FHAZ" value="FHAZ">
+                                                            Front Hazard Avoidance Camera
+                                                        </option>
+                                                        <option data-camera="RHAZ" value="RHAZ">
+                                                            Rear Hazard Avoidance Camera
+                                                        </option>
+                                                        <option data-camera="MAST" value="MAST">
+                                                            Mast Camera
+                                                        </option>
+                                                        <option data-camera="CHEMCAM" value="CHEMCAM">
+                                                            Chemistry and Camera Complex
+                                                        </option>
+                                                        <option data-camera="MAHLI" value="MAHLI">
+                                                            Mars Hand Lens Imager
+                                                        </option>
+                                                        <option data-camera="MARDI" value="MARDI">
+                                                            Mars Descent Imager
+                                                        </option>
+                                                        <option data-camera="NAVCAM" value="NAVCAM">
+                                                            Navigation Camera
+                                                        </option>
+                                                    </select>
+                                                    <span class="form-error">
+                                                        Please select a camera!
+                                                    </span>
+                                                </label>
+                                            </div>
+                                            <div class="large-6 cell custom-cell">
+                                                <button id="roverMissionStart" class="button custom-button" data-close>
+                                                    Start Mission
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
+                        <li class="accordion-item" data-accordion-item>
+                            <a id="returnAcademy" href="#" class="accordion-title custom-button" data-close
+                                aria-label="Close modal">Return to Academy</a>
+                            <div data-tab-content></div>
+                        </li>
+                    </ul>
                 </div>
-              </li>
-              <li class="accordion-item" data-accordion-item>
-                <a href="#" class="accordion-title custom-button"
-                  >Mars Exploration Mission</a
-                >
-                <div class="accordion-content body" data-tab-content>
-                  <p>Select the date and Curiousity Rover's camera</p>
-                  <form data-abide novalidate>
-                    <div class="grid-container">
-                      <div class="grid-x grid-padding-x">
-                        <div class="large-12 cell">
-                          <label class="text"
-                            >Date
-                            <input
-                              id="roverDate"
-                              type="date"
-                              placeholder="earth date"
-                              required
-                              pattern="date"
-                            />
-                            <span class="form-error">
-                              Please enter valid date!
-                            </span>
-                          </label>
-                        </div>
-                        <div class="large-12 cell">
-                          <label class="text"
-                            >Camera
-                            <select id="roverCamera" required>
-                              <option data-camera="" value="">
-                                Select Rover camera
-                              </option>
-                              <option data-camera="FHAZ" value="FHAZ">
-                                Front Hazard Avoidance Camera
-                              </option>
-                              <option data-camera="RHAZ" value="RHAZ">
-                                Rear Hazard Avoidance Camera
-                              </option>
-                              <option data-camera="MAST" value="MAST">
-                                Mast Camera
-                              </option>
-                              <option data-camera="CHEMCAM" value="CHEMCAM">
-                                Chemistry and Camera Complex
-                              </option>
-                              <option data-camera="MAHLI" value="MAHLI">
-                                Mars Hand Lens Imager
-                              </option>
-                              <option data-camera="MARDI" value="MARDI">
-                                Mars Descent Imager
-                              </option>
-                              <option data-camera="NAVCAM" value="NAVCAM">
-                                Navigation Camera
-                              </option>
-                            </select>
-                            <span class="form-error">
-                              Please select a camera!
-                            </span>
-                          </label>
-                        </div>
-                        <div class="large-6 cell custom-cell">
-                          <button
-                            id="roverMissionStart"
-                            class="button custom-button"
-                            data-close
-                          >
-                            Start Mission
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </form>
+            </div>
+        </div>
+        <!-- modal box for the captains log menu This is populated dynamically based on local storage -->
+        <div class="row">
+            <div class="columns">
+                <div class="reveal body" id="captainsLogPanel" data-reveal>
+                    <button id="returnCaptainQuartersTop" class="button custom-button" data-close
+                        aria-label="Close modal">Return to Captian's Quarters</button>
+                    <table id="captainsLogData" class="display">
+                        <thead>
+                            <tr>
+                                <th>Missions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>No missions are currently recorded</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td>
+                                    <button id="returnCaptainQuartersBottom" class="button custom-button" data-close
+                                        aria-label="Close modal">Return to Captian's Quarters</button>
+                                    <!-- <ul class="accordion" data-accordion data-allow-all-closed="true">
+                                        <li class="accordion-item" data-accordion-item>
+                                            <a id="returnCaptainQuarters" href="#" class="accordion-title custom-button"
+                                                data-close aria-label="Close modal">Return to Captian's Quarters</a>
+                                            <div data-tab-content></div>
+                                        </li>
+                                    </ul> -->
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
                 </div>
-              </li>
-              <li class="accordion-item" data-accordion-item>
-                <a
-                  id="returnAcademy"
-                  href="#"
-                  class="accordion-title custom-button"
-                  data-close
-                  aria-label="Close modal"
-                  >Return to Academy</a
-                >
-                <div data-tab-content></div>
-              </li>
-            </ul>
-          </div>
+            </div>
         </div>
-      </div>
-      <!-- modal box for the captains log menu This is populated dynamically based on local storage -->
-      <div class="row">
-        <div class="columns">
-          <div class="reveal body" id="captainsLogPanel" data-reveal>
-            <table id="captainsLogData" class="display">
-              <thead>
-                <tr>
-                  <th>Missions</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>No missions are currently recorded</td>
-                </tr>
-              </tbody>
-              <tfoot>
-                <tr>
-                    <td>
-                <ul
-                  class="accordion"
-                  data-accordion
-                  data-allow-all-closed="true"
-                >
-                  <li class="accordion-item" data-accordion-item>
-                    <a
-                    id="returnCaptainQuarters"
-                    href="#"
-                    class="accordion-title custom-button"
-                    data-close
-                    aria-label="Close modal"
-                    >Return to Captian's Quarters</a
-                  >
-                  <div data-tab-content></div>
-                  </li>
-                </ul>
-                </td>   
-                </tr>   
-              </tfoot>
-            </table>
-          </div>
-        </div>
-      </div>
 
-      <!-- main image carousel begins with static image that is updated once the page loads -->
-      <div class="row grid-x align-center">
-        <div class="cell large-10">
-          <div
-            id="missionImagesContainer"
-            class="orbit"
-            role="region"
-            aria-label="Space Pictures"
-            data-orbit
-            data-options="animInFromLeft:fade-in; animInFromRight:fade-in; animOutToLeft:fade-out; animOutToRight:fade-out;"
-            data-use-m-u-i="false"
-          >
-            <ul id="missionImages" class="orbit-container">
-              <li class="is-active orbit-slide">
-                <img
-                  id="orbit-image"
-                  class="orbit-image"
-                  src="./assets/images/placeholder-image.jpg"
-                  alt="Space"
-                />
-                <figcaption
-                  id="orbit-figcaption"
-                  class="orbit-caption custom-orbit-caption"
-                >
-                  <p>
-                    Space, the final frontier.... <br />These are the images
-                    taken by the Hubble Telescope, the Curiosity Mars rover, and
-                    astronomy enthusiasts.<br />Their continuing mission: to
-                    capture strange new worlds; to seek out new phenomena; to
-                    boldly go where only machine has dared to go...
-                  </p>
-                </figcaption>
-              </li>
-            </ul>
-            <nav id="missionImagesNav" class="orbit-bullets"></nav>
-          </div>
+        <!-- main image carousel begins with static image that is updated once the page loads -->
+        <div class="row grid-x align-center">
+            <div class="cell large-10">
+                <div id="missionImagesContainer" class="orbit" role="region" aria-label="Space Pictures" data-orbit
+                    data-options="animInFromLeft:fade-in; animInFromRight:fade-in; animOutToLeft:fade-out; animOutToRight:fade-out;"
+                    data-use-m-u-i="false">
+                    <ul id="missionImages" class="orbit-container">
+                        <li class="is-active orbit-slide">
+                            <img id="orbit-image" class="orbit-image" src="./assets/images/placeholder-image.jpg"
+                                alt="Space" />
+                            <figcaption id="orbit-figcaption" class="orbit-caption custom-orbit-caption">
+                                <p>
+                                    Space, the final frontier.... <br />These are the images
+                                    taken by the Hubble Telescope, the Curiosity Mars rover, and
+                                    astronomy enthusiasts.<br />Their continuing mission: to
+                                    capture strange new worlds; to seek out new phenomena; to
+                                    boldly go where only machine has dared to go...
+                                </p>
+                            </figcaption>
+                        </li>
+                    </ul>
+                    <nav id="missionImagesNav" class="orbit-bullets"></nav>
+                </div>
+            </div>
         </div>
-      </div>
     </main>
     <footer>
-      <div id="footer-legal" class="grid-x">
-        <div class="cell callout footer">
-          <p>
-            &copy;Stefan Marinov, Devarsh Patel, Fabian Mukungu. All rights
-            reserved. Images taken from NASA via their public API's. U.S.S.
-            Enterprise 1701-D image created by Chris from the Noun Project.
-          </p>
+        <div id="footer-legal" class="grid-x">
+            <div class="cell callout footer">
+                <p>
+                    &copy;Stefan Marinov, Devarsh Patel, Fabian Mukungu. All rights
+                    reserved. Images taken from NASA via their public API's. U.S.S.
+                    Enterprise 1701-D image created by Chris from the Noun Project.
+                </p>
+            </div>
         </div>
-      </div>
     </footer>
 
     <!-- Compressed JavaScript -->
 
-    <script
-      src="https://code.jquery.com/jquery-3.6.3.min.js"
-      integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+        integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <!-- including jquery UI-->
-    <script
-      src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"
-      integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0="
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.5/dist/js/foundation.min.js"
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"
+        integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.5/dist/js/foundation.min.js"
+        crossorigin="anonymous"></script>
     <!-- including Day JS-->
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
     <!-- including dataTables -->
     <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.1/js/dataTables.foundation.min.js"></script>
     <script type="module" src="./assets/javascript/script.js"></script>
- 
-  </body>
+</body>
+
 </html>
