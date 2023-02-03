@@ -166,7 +166,7 @@ function loadMissionsData() {
 
     });
     $(document).foundation();
-    $("#captainsLogData").DataTable({ searching: false, info: false });
+    $("#captainsLogData").DataTable({ searching: true, info: true });
 }
 
 // starting the space mission; no action takes place while we have invalid inputs
