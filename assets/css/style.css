@@ -1,100 +1,127 @@
 /* common variables */
 :root {
-    --colour-black: #000000;
-    --colour-main: #ffd46d;
-    --colour-background: #353333;
-    --colour-hover: #e8960d;
+  --colour-black: #000000;
+  --colour-main: #d6a444;
+  --colour-background: #353333;
+  --colour-button-hover-bg: #2b53a7;
+  --colour-button-hover-text: #d6a444;
+  --colour-button: #d6a444;
+  --colour-button-border: #2b53a7;
 }
 
 /* sets the style for the header and footer */
-.footer, .header {
-    background-color: var(--colour-black)!important;
-    color: var(--colour-main)!important;
-    margin: 0;
-    padding: 1.5rem;  
-    display: flex;
-    height: 5rem;
+.footer,
+.header {
+  background-color: var(--colour-black) !important;
+  color: var(--colour-main) !important;
+  margin: 0;
+  padding: 1.5rem;
+  display: flex;
 }
 /* sets the style for the font in the header*/
 .header {
-    font-size: 4em;
+  font-size: 4em;
+  height: 5rem;
 }
+/* sets the custom style for the footer */
+.footer {
+  min-height: 8rem;
+}
+
 /* sets the style for the body */
 .body {
-    background-color: var(--colour-background)!important;
-    padding: 2rem;
-    color:var(--colour-main)!important;
+  background-color: var(--colour-background) !important;
+  padding: 2rem;
+  color: var(--colour-main) !important;
 }
 /* sets custom styling for the text */
 .text {
-    color: var(--colour-main)!important;
+  color: var(--colour-main) !important;
 }
 /* sets custom styling for the cells */
-.custom-cell{
-    align-items: center;
-    justify-content: center;
-    display: flex;
+.custom-cell {
+  align-items: center;
+  justify-content: center;
+  display: flex;
 }
 /* sets custom styling for the buttons */
 .custom-button {
-    background-color: var(--colour-main)!important;
-    color: var(--colour-background)!important;
-    font-size: 1.25em;
+  background-color: var(--colour-button) !important;
+  color: var(--colour-background) !important;
+  font-size: 1.25em;
 }
 /* sets custom styling for the orbit active buttons */
 nav > button.is-active {
-    background-color: var(--colour-main)!important;
+  background-color: var(--colour-main) !important;
 }
 /* sets custom styling for the buttons on hover */
 .custom-button:hover {
-    background-color: var(--colour-hover)!important;
-    color: var(--colour-background)!important;
+  background-color: var(--colour-button-hover-bg) !important;
+  color: var(--colour-button-hover-text) !important;
 }
 /* sets custom styling for the orbit caption on the stock image */
 .custom-orbit-caption {
-    top: 0;
-    position: absolute;
-    bottom: auto;
+  top: 0;
+  position: absolute;
+  bottom: auto;
 }
 /* sets custom styling for the enterprise logo */
 header img {
-    height: 4rem;
+  height: 4rem;
 }
 /* sets custom styling for the logo section */
 .logo {
-    display:inline-flex;
-    align-items: center;
+  display: inline-flex;
+  align-items: center;
 }
 /* sets custom styling for the stocked image when no data is returned from the API */
 .blurred_image {
-    filter: blur(28px);
-    -webkit-filter: blur(28px);
+  filter: blur(28px);
+  -webkit-filter: blur(28px);
 }
 /* sets custom styling for the orbit images */
 li img {
-    max-height: 100vh;
+  max-height: 100vh;
 }
 /* sets custom styling for the captain's log table*/
-label, tr, td, thead, tbody, table {
-    background-color: var(--colour-background)!important;
-    color:var(--colour-main)!important;
+label,
+tr,
+td,
+thead,
+tbody,
+table {
+  background-color: var(--colour-background) !important;
+  color: var(--colour-main) !important;
 }
 /* sets custom styling for the pagination buttons in the captain's log */
 .current {
-    background: var(--colour-main)!important;
-    color: var(--colour-background)!important;
+  background: var(--colour-main) !important;
+  color: var(--colour-background) !important;
 }
 /* sets custom styling for the pagination buttons in the captain's log */
 .paginate_button a {
-    background-color: var(--colour-background);
-    color:var(--colour-main);
+  background-color: var(--colour-background);
+  color: var(--colour-main);
 }
 /* sets custom styling for the pagination buttons in the captain's log */
 .paginate_button a:hover {
-    color: var(--colour-background)!important;
-    background-color:var(--colour-main)!important;
+  color: var(--colour-background) !important;
+  background-color: var(--colour-main) !important;
 }
 /* sets custom styling for the accordion containers */
 .accordion {
-    margin:0
+  margin: 0;
+}
+/* sets custom styling for the captain's log container */
+#captainsLogPanel.reveal {
+  width: 100%;
+}
+/* sets custom styling for mission control and captains log button width */
+#missionControlBtn,
+#captainsLogBtn {
+  width: 15rem;
+}
+/* sets custom styling for buttons */
+button {
+  border-radius: 16px !important;
 }

@@ -70,9 +70,9 @@ The application is using two NASA API's
 - Mars Rover Photos: displays the Mars rover photos from the Curiosity rover. It must be noted that:
   - the rover does not take images daily
   - when images are taken not all of the Rover's cameras take pictures
-  - when images are taken, each camera may take different number of pictures. 
-  
-Therefore, in some searches no images are returned. For the purposes of demonstration, Jan 26, 2023 is the date where all the cameras have taken images.
+  - when images are taken, each camera may take different number of pictures.
+
+Therefore, in some searches no images are returned. For the purposes of demonstration, Jan 27, 2023 is the date where all the cameras have taken images.
 
 ### Local Storage:
 
@@ -88,7 +88,6 @@ Local storage is always updated as that represents "new mission."
   - Fill in the required parameters for each type of mission.
 - Click on the "Start Mission" button
 - You will be shown the images according to the search criteria
-
 
 For viewing the responsiveness of the website:
 
