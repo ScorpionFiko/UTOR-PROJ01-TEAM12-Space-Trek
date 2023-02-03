@@ -43,7 +43,7 @@ Below is the image of Captain's log
 
 ## Installation
 
-No installation requirements. [Click here](https://scorpionfiko.github.io/UTOR-PROJ01-TEAM12-Exploring-Mars/) to open the webpage in your default browser.
+No installation requirements. [Click here](https://scorpionfiko.github.io/UTOR-PROJ01-TEAM12-Space-Trek/) to open the webpage in your default browser.
 
 ## Technologies and Functionality
 
@@ -80,22 +80,41 @@ Local storage is based on a unique mission ID. The mission ID is the unix timest
 
 Local storage is always updated as that represents "new mission."
 
+### Dayjs
+
+Dayjs is used for all day handling and format in the application. The Dayjs unix timestamp method has been used to arrive at the mission dates.
+
+
 ## Usage
 
-- [Click here](https://scorpionfiko.github.io/UTOR-PROJ01-TEAM12-Exploring-Mars/) to visit the application.
+### To Access the Application
+
+- [Click here](https://scorpionfiko.github.io/UTOR-PROJ01-TEAM12-Space-Trek/) to visit the application.
+
+#### To Start a Mission
+
 - Click on the mission control button.
 - Select from Space Exploration Mission or Mars Exploration Mission.
   - Fill in the required parameters for each type of mission.
 - Click on the "Start Mission" button
 - You will be shown the images according to the search criteria
 
-For viewing the responsiveness of the website:
+#### To View the Captain's Log
 
-Method 1:
+- Click on the Captain's log button
+- Click on any of the mission displayed in the table
+  - if no missions are present, the only buttons are "Return to Captain's Quarters"
+- The log will expand showing all the images within it
+
+
+
+### For viewing the responsiveness of the website:
+
+#### Method 1:
 
 - Use separate computer, tablet, or phone to access the website
 
-Method 2:
+#### Method 2:
 
 - Access the web page via web browser.
 - Right click on the page and select "inspect" to open browser's developer tools
