@@ -4,7 +4,7 @@
   --colour-main: #d6a444;
   --colour-background: #353333;
   --colour-button-hover-bg: #2b53a7;
-  --colour-button-hover-text: #d6a444;
+  --colour-button-hover-text: #ffffff;
   --colour-button: #d6a444;
   --colour-button-border: #2b53a7;
 }
@@ -124,4 +124,5 @@ table {
 /* sets custom styling for buttons */
 button {
   border-radius: 16px !important;
+
 }
